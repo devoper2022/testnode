@@ -9,9 +9,7 @@
 
 <body>
     <script type="text/javascript">
-        function _login() {
-
-            let GatewayURL = 'gateway.eu1.mindsphere.io';
+        let GatewayURL = 'gateway.eu1.mindsphere.io';
             let url = `https://${GatewayURL}/api/technicaltokenmanager/v3/oauth/token`
             let id = 'iiotqzna-brewery-v1.0.0';
             let secret = 'vZFm1C7j1Htb9JLJGmit0004VVU2dUvvemcmnlYEayX';
@@ -19,9 +17,12 @@
             let _provider = id.split('-')[0];
             let _appName = id.split('-')[1];
             let _version = id.split('-')[2];
+        function _login() {
+
+            
             let data = {
                 "grant_type": "client_credentials",
-                "appName": `${_appName}}`,
+                "appName": `${_appName}`,
                 "appVersion": `${_version}`,
                 "hostTenant": `${_provider}`,
                 "userTenant": `${_provider}`
@@ -46,15 +47,15 @@
         login();
         function login() {
             var myHeaders = new Headers();
-            myHeaders.append("X-SPACE-AUTH-KEY", "Bearer {{base64token}}");
+            myHeaders.append("X-SPACE-AUTH-KEY", `Bearer ${base64token}`);
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
                 "grant_type": "client_credentials",
-                "appName": "{{_appName}}",
-                "appVersion": "{{_version}}",
-                "hostTenant": "{{_provider}}",
-                "userTenant": "{{_provider}}"
+                 "appName": `${_appName}`,
+                "appVersion": `${_version}`,
+                "hostTenant": `${_provider}`,
+                "userTenant": `${_provider}`
             });
 
             var requestOptions = {
